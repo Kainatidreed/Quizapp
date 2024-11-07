@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: black;
+    }
+    .container{
+        height: 550px;
+        width: 400px;
+        background-color: rgb(44, 10, 238);
+        margin-top: 40px;
+        color: white;
+        margin-left: 500px;
+        padding: 10px 20px 0  40px;
+        border-radius: 20px;
+        box-shadow: 5px 2px 40px 5px;
+        }
+        div{
+            padding: 10px 0;
+            
+            font-size: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1{
+            font-size: 40px;
+            text-align: center;
+        }
+        #btn{
+            background-color: black;
+            color: aliceblue;
+            padding: 10px 150px;
+            border-radius: 10px;
+            font-size: 20px;
+            text-align: center;
+            box-shadow: 2px 2px 20px 5px;
+        }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Quiz App</h1>
+        <h2 id="question">question</h2>
+        
+        <div>
+            <input type="radio" name="option" class="choice">
+            <label for="" id="option_1">option1</label><br>
+        </div>
+        <div>
+            <input type="radio" name="option" class="choice">
+            <label for="" id="option_2">option2</label><br>
+        </div>
+        <div>
+            <input type="radio" name="option" class="choice">
+            <label for="" id="option_3">option3</label><br>
+        </div>
+        <div>
+            <input type="radio" name="option" class="choice">
+            <label for="" id="option_4">option4</label><br>
+            <p id="score"></p>
+        </div>
+        <div>
+        
+        <input type="button" id="btn" value="Submit">
+        </div>
+        
+    </div>
+    <script>
+        let Data = [
+            {
+                question: "HTML stands for------",
+                a: "High Langauge",
+                b: "Hypertext Markup Langauge",
+                c: "High Mark Language",
+                d: "Hypertext Language",
+                answer:"Hypertext Markup Language"
+            },
+            {
+                question: "Which language run in a web browser ",
+                a: "Java",
+                b: "PHP",
+                c: "C",
+                d: "Javascript",
+                answer:"Javascript"
+
+            },
+            {
+                question: "What is CSS stands for",
+                a: "Cascading Style Sheet",
+                b: "Style",
+                c: "Sheet",
+                d: "Show",
+                answer:"Cascading Style Sheet"
+            }
+        ]
+        var num=0
+        var score=1;
+        
+        var question=document.getElementById("question")
+        var option_a=document.getElementById("option_1")
+        var option_b=document.getElementById("option_2")
+        var option_c=document.getElementById("option_3")
+        var option_d=document.getElementById("option_4")
+        var  result=document.querySelectorAll(".choice")
+        var button=document.getElementById("btn")
+               
+        question.innerHTML=Data[num].question
+        option_a.innerHTML=Data[num].a
+         option_b.innerHTML=Data[num].b
+        option_c.innerHTML=Data[num].c
+        option_d.innerHTML=Data[num].d
+        button.addEventListener("click",()=>{
+            var checkAns=document.querySelector('input[type="radio"]:checked')
+            
+            
+            if(checkAns==null)
+            {
+                alert("Please select anyone")
+            }
+            else{
+                
+                if(checkAns.nextElementSibling.textContent===Data[num].answer)
+                {
+                    
+                    score++;
+                }
+            }
+            num++
+            if(num<Data.length)
+            {
+                question.innerHTML=Data[num].question
+                option_a.innerHTML=Data[num].a
+                 option_b.innerHTML=Data[num].b
+                option_c.innerHTML=Data[num].c
+                option_d.innerHTML=Data[num].d
+                checkAns.checked=false;
+
+            }
+            else{
+                document.getElementById("score").innerHTML="Your score is "+"   "+score+"   "+"out of  "+Data.length
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>
